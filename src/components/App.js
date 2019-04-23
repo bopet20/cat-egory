@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { CatLoader } from './CatLoader';
+import CatLoader from './CatLoader';
 import { Categories } from './Categories';
 import { CatList } from './CatList';
 
