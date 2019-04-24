@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import CatLoader from './CatLoader';
 import Categories from './Categories';
-import { CatList } from './CatList';
 
 const CatEgoryApp = () => {
   const [catUrl, setCatUrl] = useState('')
@@ -26,7 +25,6 @@ const CatEgoryApp = () => {
         <h2>Cat-egory</h2>
         <CatLoader catUrl={catUrl} fetchRandomCat={fetchRandomCat} />
         <Categories catUrl={catUrl}/>
-        <CatList />
       </div>
   )
 }
