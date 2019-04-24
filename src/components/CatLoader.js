@@ -1,6 +1,6 @@
 import React from 'react'
 
-const CatLoader = ({ catUrl, setRandomCat }) => {
+const CatLoader = ({ catUrl, fetchRandomCat }) => {
   return (
     <div className="cat-loader">
       {catUrl &&
@@ -13,7 +13,7 @@ const CatLoader = ({ catUrl, setRandomCat }) => {
           <button
             type="button"
             className="cat-loader__button"
-            onClick={() => setRandomCat()}
+            onClick={() => fetchRandomCat()}
           >
             next
           </button>

@@ -8,18 +8,14 @@ const CatEgoryApp = () => {
   const [catUrl, setCatUrl] = useState('')
 
   useEffect(() => {
-    setRandomCat()
+    fetchRandomCat()
   }, [])
-
-  const setRandomCat = async () => {
-    const cat = await fetchRandomCat()
-    setCatUrl(cat.file)
-  }
 
   const fetchRandomCat = async () => {
     try {
       const response = await axios.get('http://aws.random.cat/meow')
-      return response.data
+      const cat = await response.data
+      setCatUrl(cat.file)
     } catch (error) {
       throw new Error("Failed to fetch random cat")
     }
@@ -28,7 +24,7 @@ const CatEgoryApp = () => {
   return (
       <div className="container">
         <h2>Cat-egory</h2>
-        <CatLoader catUrl={catUrl} setRandomCat={setRandomCat} />
+        <CatLoader catUrl={catUrl} fetchRandomCat={fetchRandomCat} />
         <Categories catUrl={catUrl}/>
         <CatList />
       </div>
