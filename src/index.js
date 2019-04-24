@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './styles/styles.scss';
-import App from './components/App';
+import CatEgoryApp from './components/CatEgoryApp';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<CatEgoryApp />, document.getElementById('root'));
 

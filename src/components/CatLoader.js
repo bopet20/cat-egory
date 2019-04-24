@@ -1,27 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+import React from 'react'
 
-const CatLoader = () => {
-  const [catUrl, setCatUrl] = useState('')
-
-  useEffect(() => {
-    setRandomCat()
-  }, [])
-
-  const setRandomCat = async () => {
-    const cat = await fetchRandomCat()
-    setCatUrl(cat.file)
-  }
-
-  const fetchRandomCat = async () => {
-    try {
-      const response = await axios.get('http://aws.random.cat/meow')
-      return response.data
-    } catch (error) {
-      throw new Error("Failed to fetch random cat")
-    }
-  }
-
+const CatLoader = ({ catUrl, setRandomCat }) => {
   return (
     <div className="cat-loader">
       {catUrl &&
@@ -30,9 +9,10 @@ const CatLoader = () => {
           className="cat-loader__image"
           alt="Random cat"
         />}
-        <div className="cat-loader__form">
+        <div className="cat-loader__actions">
           <button
             type="button"
+            className="cat-loader__button"
             onClick={() => setRandomCat()}
           >
             next
