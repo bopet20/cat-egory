@@ -1,0 +1,33 @@
+.button {
+  background: $yellow;
+  border: 1px solid $yellow;
+  color: $dark-yellow;
+  font-weight: bold;
+  font-size: 110%;
+  border-radius: 5px;
+  padding: ($spacer * 0.5) $spacer;
+  transition: all 0.15s ease-in-out;
+
+  &:hover {
+    background: darken($yellow, 5%);
+    border: 1px solid darken($yellow, 5%);
+  }
+
+  &--lg {
+    font-size: 150%;
+
+    @include media-breakpoint-up(md) {
+      padding: $spacer;
+    }
+  }
+
+  &--secondary {
+    background: $light-yellow;
+    border: 1px solid $light-yellow;
+
+    &:hover {
+      background: darken($light-yellow, 15%);
+      border: 1px solid darken($light-yellow, 15%);
+    }
+  }
+}

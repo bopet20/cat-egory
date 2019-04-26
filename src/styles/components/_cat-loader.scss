@@ -1,6 +1,23 @@
 .cat-loader {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding-top: $spacer;
+
+  @include media-breakpoint-up(lg) {
+    @include make-col-ready();
+    @include make-col(6);
+  }
+
   &__image {
-    max-width: 100%;
-    // margin: 0 auto;
+    @include img-fluid();
+    align-self: center;
+    padding-bottom: $spacer;
+  }
+
+  &__action {
+    display: flex;
+    align-self: center;
+    padding-bottom: $spacer;
   }
 }

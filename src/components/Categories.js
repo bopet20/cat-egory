@@ -18,30 +18,33 @@ const Categories = ({ catUrl }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const category = e.target[0].value
-    const oldCategories = JSON.parse(localStorage.getItem('categories'))
-    let newCategories = {}
-    // Checks if saved categories exist
-    if (oldCategories && !!Object.keys(oldCategories).length) {
-      // Checks if category already exists
-      if (oldCategories[category]) {
-        const updatedCategory = [...oldCategories[category]]
-        updatedCategory.push(catUrl)
-        newCategories = {
-          ...oldCategories,
-          [category]: updatedCategory
+    const category = e.target[0].value.trim().toLowerCase()
+    if (category) {
+      const oldCategories = JSON.parse(localStorage.getItem('categories'))
+      let newCategories = {}
+      // Checks if saved categories exist
+      if (oldCategories && !!Object.keys(oldCategories).length) {
+        // Checks if category already exists
+        if (oldCategories[category]) {
+          const updatedCategory = [...oldCategories[category]]
+          updatedCategory.push(catUrl)
+          newCategories = {
+            ...oldCategories,
+            [category]: updatedCategory
+          }
+        } else {
+          newCategories = {
+            ...oldCategories,
+            [category]: [catUrl]
+          }
         }
       } else {
-        newCategories = {
-          ...oldCategories,
-          [category]: [catUrl]
-        }
+        newCategories = { [category]: [catUrl] }
       }
-    } else {
-      newCategories = { [category]: [catUrl] }
+      setCategories(newCategories)
+      setCatFocus(category)
+      e.target[0].value = ''
     }
-    setCategories(newCategories)
-    e.target[0].value = ''
   }
 
   return (
@@ -51,17 +54,18 @@ const Categories = ({ catUrl }) => {
           className="categories__form"
           onSubmit={handleSubmit}
         >
-          <label>
-            Cat-egorize:
-            <input
-              type="text"
-              name="category"
-              id="category"
-            />
-          </label>
+          <label htmlFor="category" />
+          <input
+            autoComplete="off"
+            className="categories__input"
+            type="text"
+            name="category"
+            id="category"
+            placeholder="Cat-egorize"
+          />
           <button
             type="submit"
-            className="cat-loader__button"
+            className="button"
           >
             Save
           </button>
@@ -69,20 +73,26 @@ const Categories = ({ catUrl }) => {
         <div className="categories__list">
         {!!Object.keys(categories).length &&
           Object.keys(categories).map((label) => (
-            <div className="categories__item" key={label}>
-              <button
-                type="button"
-                onClick={() => setCatFocus(label)}
-              >
+            <button
+              key={label}
+              type="button"
+              className="button button--secondary categories__item"
+              onClick={() => setCatFocus(label)}
+            >
+              <span className="categories__label">
                 {label}
-              </button>
-              {categories[label].length}
-            </div>
+              </span>
+              <span className="categories__count">
+                {categories[label].length}
+              </span>
+            </button>
           ))
         }
         </div>
       </div>
-      <CatList category={catFocus} cats={categories[catFocus]}/>
+      {catFocus &&
+        <CatList category={catFocus} cats={categories[catFocus]}/>
+      }
     </>
   )
 }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
+import Header from './Header'
 import CatLoader from './CatLoader';
 import Categories from './Categories';
 
@@ -12,7 +13,7 @@ const CatEgoryApp = () => {
 
   const fetchRandomCat = async () => {
     try {
-      const response = await axios.get('http://aws.random.cat/meow')
+      const response = await axios.get('https://aws.random.cat/meow')
       const cat = await response.data
       setCatUrl(cat.file)
     } catch (error) {
@@ -21,11 +22,15 @@ const CatEgoryApp = () => {
   }
 
   return (
+    <>
+      <Header/>
       <div className="container">
-        <h2>Cat-egory</h2>
-        <CatLoader catUrl={catUrl} fetchRandomCat={fetchRandomCat} />
-        <Categories catUrl={catUrl}/>
+        <main className="content-container">
+          <CatLoader catUrl={catUrl} fetchRandomCat={fetchRandomCat} />
+          <Categories catUrl={catUrl}/>
+        </main>
       </div>
+    </>
   )
 }
 

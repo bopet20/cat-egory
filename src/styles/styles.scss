@@ -1,3 +1,13 @@
+@import 'node_modules/bootstrap/scss/functions';
+@import 'node_modules/bootstrap/scss/variables';
+@import 'node_modules/bootstrap/scss/mixins';
+@import 'node_modules/bootstrap/scss/images';
+
 @import './base/base';
-@import './components/container';
+@import './base/settings';
+@import './components/content-container';
+@import './components/header';
 @import './components/cat-loader';
+@import './components/categories';
+@import './components/cat-list';
+@import './components/button';

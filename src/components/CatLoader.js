@@ -9,13 +9,13 @@ const CatLoader = ({ catUrl, fetchRandomCat }) => {
           className="cat-loader__image"
           alt="Random cat"
         />}
-        <div className="cat-loader__actions">
+        <div className="cat-loader__action">
           <button
             type="button"
-            className="cat-loader__button"
+            className="button button--lg cat-loader__button"
             onClick={() => fetchRandomCat()}
           >
-            next
+            New Picture
           </button>
         </div>
     </div>

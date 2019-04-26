@@ -1,0 +1,44 @@
+.cat-list {
+  flex: 1;
+
+  &__header {
+    @include make-row();
+    justify-content: space-between;
+    color: $dark-yellow;
+    background: $light-yellow;
+    margin-bottom: $spacer;
+    padding: $spacer;
+
+    @include media-breakpoint-up(md) {
+      border-radius: 5px;
+    }
+  }
+
+  &__category {
+    text-align: center;
+    flex: 1;
+    padding-left: $spacer;
+    font-weight: bold;
+  }
+
+  &__count {
+    padding-right: $spacer;
+  }
+
+  &__content {
+    @include make-row();
+    border-radius: 5px;
+  }
+
+  &__image {
+    @include img-fluid();
+    @include make-col-ready();
+    @include make-col(6);
+    padding: $spacer;
+    align-self: center;
+
+    @include media-breakpoint-up(lg) {
+      @include make-col(4);
+    }
+  }
+}
